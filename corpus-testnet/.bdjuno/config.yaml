@@ -1,6 +1,18 @@
 chain:
     bech32_prefix: animus
-    modules: []
+    modules: 
+        - modules
+        - messages
+        - auth
+        - bank
+        - consensus
+        - gov
+        - mint
+        # - pricefeed
+        - slashing
+        - staking
+        - distribution
+        - actions
 node:
     type: remote
     config:
@@ -18,6 +30,7 @@ parsing:
     parse_genesis: true
     start_height: 1
     average_block_time: 10s
+    genesis_file_path: /home/msalopek/.animus/config/genesis.json
 database:
     name: bdjuno
     host: localhost
