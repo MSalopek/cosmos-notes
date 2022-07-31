@@ -1,3 +1,6 @@
+# NOTE
+**Don't use any of the keys and/or seed phrases specified in this file.**
+
 ## COMMANDS
 ### init chain; add keys
 animusd init --chain-id=corpus-testnet corpus-primus

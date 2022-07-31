@@ -21,6 +21,11 @@ This will start posgtres and hasura containers.
 postgres binds `./db` as volume and runs the `init.sql` as create tables script. The `init.sql` is created by concatenating all files in `./database/schema`.
 
 
+Then, add hasura metadata (else it won't work :D)
+`$ cd <path_to>/bdjuno/hasura`
+`$ hasura metadata apply --endpoint http://localhost:8080 --admin-secret supersecret`
+
+
 ##### 2. Create bdjuno home directory.
 
 `$ bdjuno init`
@@ -31,7 +36,19 @@ Docker containers have to be running.
 
 `$ bdjuno parse genesis-file <path to genesis.json>`
 
-In my case that is: `$ bdjuno parse genesis-file ~/.animusd/config/genesis.json`.
+You can also put the path into the `parsing` section of bdjuno config.yaml (~/.bdjuno/config.yaml)
+```yaml
+parsing:
+    workers: 1
+    listen_new_blocks: true
+    parse_old_blocks: true
+    parse_genesis: true
+    start_height: 1
+    average_block_time: 10s
+    genesis_file_path: /home/msalopek/.animus/config/genesis.json # like this
+```
+
+In my case that is: `$ bdjuno parse genesis-file --genesis-file-path ~/.animus/config/genesis.json`.
 
 ##### 4. Start the service
 
