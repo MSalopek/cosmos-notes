@@ -1,0 +1,43 @@
+# Node explorer setup instructions
+
+This tutorial explains how to setup `bdjuno` (node explorer backend) and `big-dipper-2.0-cosmos`
+
+The original repos:
+* https://github.com/forbole/bdjuno
+* https://github.com/forbole/big-dipper-2.0-cosmos
+
+My forks:
+* https://github.com/MSalopek/bdjuno
+* https://github.com/MSalopek/big-dipper-2.0-cosmos
+
+The forks have some specifics for setting up `animusnet` corpus-testnet.
+
+##### 1. Start docker containers
+Navigate to project root and run docker.compose.local.yml
+.
+`$ docker compose -f docker.compose.local.yml up -d`
+
+This will start posgtres and hasura containers.
+postgres binds `./db` as volume and runs the `init.sql` as create tables script. The `init.sql` is created by concatenating all files in `./database/schema`.
+
+
+##### 2. Create bdjuno home directory.
+
+`$ bdjuno init`
+
+
+##### 3. Parse genesis file
+Docker containers have to be running.
+
+`$ bdjuno parse genesis-file <path to genesis.json>`
+
+In my case that is: `$ bdjuno parse genesis-file ~/.animusd/config/genesis.json`.
+
+##### 4. Start the service
+
+
+##### Additional
+Docs are at:
+* https://docs.bigdipper.live/cosmos-based/parser/setup
+* https://github.com/forbole/bdjuno
+
